@@ -1443,56 +1443,163 @@
 
     <footer><p>© 2025 Olga Fot. Dubai, UAE.</p></footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
+        // Language Switching
         let currentLang = 'en';
+        
         function switchLanguage(lang) {
             currentLang = lang;
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
-            document.querySelectorAll('[data-en]').forEach(el => { if (el.tagName !== 'INPUT') el.innerHTML = el.getAttribute('data-' + lang) || el.innerHTML; });
-            document.querySelectorAll('[data-en-placeholder]').forEach(el => el.placeholder = el.getAttribute('data-' + lang + '-placeholder') || el.placeholder);
-            document.querySelectorAll('.suggestion-chip').forEach(chip => chip.dataset.question = chip.getAttribute('data-question-' + lang) || chip.dataset.question);
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-en]').forEach(el => {
+                const text = el.getAttribute('data-' + lang);
+                if (text && el.tagName !== 'INPUT') {
+                    el.innerHTML = text;
+                }
+            });
+            
+            // Update placeholders
+            document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+                const placeholder = el.getAttribute('data-' + lang + '-placeholder');
+                if (placeholder) {
+                    el.placeholder = placeholder;
+                }
+            });
+            
+            // Update suggestion chips
+            document.querySelectorAll('.suggestion-chip').forEach(chip => {
+                const question = chip.getAttribute('data-question-' + lang);
+                if (question) {
+                    chip.dataset.question = question;
+                }
+            });
+            
             localStorage.setItem('lang', lang);
         }
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => switchLanguage(btn.dataset.lang)));
-        if (localStorage.getItem('lang') === 'ru' || (!localStorage.getItem('lang') && navigator.language.startsWith('ru'))) switchLanguage('ru');
+        
+        // Add click handlers to language buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                switchLanguage(this.dataset.lang);
+            });
+        });
+        
+        // Check saved language or browser language
+        const savedLang = localStorage.getItem('lang');
+        const browserLang = navigator.language.startsWith('ru') ? 'ru' : 'en';
+        const initialLang = savedLang || browserLang;
+        if (initialLang === 'ru') {
+            switchLanguage('ru');
+        }
 
+        // Resume context for AI
         const resumeContext = `You are an AI on Olga Fot's resume site. She's a Marketing Manager in Dubai with 9+ years experience. Current: Wilfort Aero (private aviation). Previous: Renty.ae (2400+ reviews, 4.9 rating, Supercar Rally 100+ cars), Best7.ae, Flipweb (40x lead growth), Ipoteka.center, Kokoc Group (international brands). Skills: SMM strategy, team building (up to 10), reputation management, content production, influencer management. Languages: Ukrainian, Russian (native), English (intermediate). Contact: +971504649018, fotolga2020@gmail.com, @ole4kafot. Keep answers brief.`;
         
+        // Chat functionality
         let apiKey = '';
-        const apiSetup = document.getElementById('apiSetup'), chatInterface = document.getElementById('chatInterface'), chatMessages = document.getElementById('chatMessages'), chatInput = document.getElementById('chatInput'), sendBtn = document.getElementById('sendBtn');
+        const apiSetup = document.getElementById('apiSetup');
+        const chatInterface = document.getElementById('chatInterface');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendBtn');
         
         document.getElementById('connectBtn').addEventListener('click', () => {
             const key = document.getElementById('apiKeyInput').value.trim();
-            if (key && key.startsWith('sk-ant')) { apiKey = key; apiSetup.style.display = 'none'; chatInterface.style.display = 'flex'; }
-            else alert('Enter valid API key (sk-ant...)');
+            if (key && key.startsWith('sk-ant')) {
+                apiKey = key;
+                apiSetup.style.display = 'none';
+                chatInterface.style.display = 'flex';
+            } else {
+                alert('Enter valid API key (sk-ant...)');
+            }
         });
-        document.getElementById('apiKeyInput').addEventListener('keypress', e => { if (e.key === 'Enter') document.getElementById('connectBtn').click(); });
+        
+        document.getElementById('apiKeyInput').addEventListener('keypress', e => {
+            if (e.key === 'Enter') document.getElementById('connectBtn').click();
+        });
 
         async function sendMessage(msg) {
             if (!msg.trim() || !apiKey) return;
-            addMessage(msg, 'user'); chatInput.value = ''; sendBtn.disabled = true;
-            const typing = document.createElement('div'); typing.className = 'chat-message assistant';
+            addMessage(msg, 'user');
+            chatInput.value = '';
+            sendBtn.disabled = true;
+            
+            const typing = document.createElement('div');
+            typing.className = 'chat-message assistant';
             typing.innerHTML = '<div class="message-avatar assistant-avatar"></div><div class="message-content"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
-            chatMessages.appendChild(typing); chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatMessages.appendChild(typing);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
             try {
                 const res = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST', headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
-                    body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 500, system: resumeContext, messages: [{ role: 'user', content: msg }] })
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-api-key': apiKey,
+                        'anthropic-version': '2023-06-01',
+                        'anthropic-dangerous-direct-browser-access': 'true'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 500,
+                        system: resumeContext,
+                        messages: [{ role: 'user', content: msg }]
+                    })
                 });
-                const data = await res.json(); typing.remove();
+                const data = await res.json();
+                typing.remove();
                 addMessage(data.content?.[0]?.text || data.error?.message || 'Error', 'assistant');
-            } catch (e) { typing.remove(); addMessage('Connection error', 'assistant'); }
+            } catch (e) {
+                typing.remove();
+                addMessage('Connection error', 'assistant');
+            }
             sendBtn.disabled = false;
         }
+        
         function addMessage(text, role) {
-            const div = document.createElement('div'); div.className = 'chat-message ' + role;
+            const div = document.createElement('div');
+            div.className = 'chat-message ' + role;
             const avatarClass = role === 'user' ? 'user-avatar' : 'assistant-avatar';
             div.innerHTML = `<div class="message-avatar ${avatarClass}"></div><div class="message-content"><p>${text.replace(/\n/g, '<br>')}</p></div>`;
-            chatMessages.appendChild(div); chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
         }
+        
         sendBtn.addEventListener('click', () => sendMessage(chatInput.value));
-        chatInput.addEventListener('keypress', e => { if (e.key === 'Enter') sendMessage(chatInput.value); });
-        document.querySelectorAll('.suggestion-chip').forEach(chip => chip.addEventListener('click', () => sendMessage(chip.dataset.question)));
+        chatInput.addEventListener('keypress', e => {
+            if (e.key === 'Enter') sendMessage(chatInput.value);
+        });
+        
+        document.querySelectorAll('.suggestion-chip').forEach(chip => {
+            chip.addEventListener('click', () => sendMessage(chip.dataset.question));
+        });
 
-        document.querySelector('.mobile-menu-btn').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('active'));
-        document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('active
+        // Mobile menu
+        document.querySelector('.mobile-menu-btn').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(a => {
+            a.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
