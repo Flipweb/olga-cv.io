@@ -338,8 +338,12 @@
         }
 
         .value-card-icon {
-            font-size: 1.5rem;
             margin-bottom: 0.8rem;
+            color: var(--sky);
+        }
+
+        .value-card-icon svg {
+            stroke: var(--sky);
         }
 
         .value-card h3 {
@@ -748,8 +752,9 @@
         }
 
         .api-icon {
-            font-size: 2.5rem;
             margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
         }
 
         .api-setup-content h3 {
@@ -879,8 +884,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
             flex-shrink: 0;
+        }
+
+        .assistant-avatar {
+            background: var(--sky-light) url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%230071E3' stroke-width='1.5' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='3' y='11' width='18' height='10' rx='2'/%3E%3Ccircle cx='12' cy='5' r='3'/%3E%3C/svg%3E") center/14px no-repeat;
+        }
+
+        .user-avatar {
+            background: var(--gray-100) url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%236E6E73' stroke-width='1.5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E") center/14px no-repeat;
         }
 
         .chat-message.user .message-avatar {
@@ -1146,32 +1158,32 @@
         </div>
         <div class="value-cards">
             <div class="value-card">
-                <div class="value-card-icon">👥</div>
+                <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
                 <h3 data-en="Team Building" data-ru="Построение команды">Team Building</h3>
                 <p data-en="Full-cycle team assembly — recruiting, onboarding, mentoring." data-ru="Полный цикл — подбор, онбординг, менторство.">Full-cycle team assembly — recruiting, onboarding, mentoring.</p>
             </div>
             <div class="value-card">
-                <div class="value-card-icon">📊</div>
+                <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M21 21H4.6c-.56 0-.84 0-1.054-.109a1 1 0 0 1-.437-.437C3 20.24 3 19.96 3 19.4V3"></path><path d="m7 14 4-4 4 4 6-6"></path></svg></div>
                 <h3 data-en="SMM Strategy" data-ru="SMM-стратегия">SMM Strategy</h3>
                 <p data-en="Strategies aligned with business goals. Content planning, KPIs." data-ru="Стратегии под бизнес-цели. Контент-планирование, KPI.">Strategies aligned with business goals. Content planning, KPIs.</p>
             </div>
             <div class="value-card">
-                <div class="value-card-icon">🎯</div>
+                <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
                 <h3 data-en="Targeted Ads" data-ru="Таргетинг">Targeted Ads</h3>
                 <p data-en="Paid campaigns, budget optimization, A/B testing." data-ru="Платные кампании, оптимизация бюджета, A/B-тесты.">Paid campaigns, budget optimization, A/B testing.</p>
             </div>
             <div class="value-card">
-                <div class="value-card-icon">🎨</div>
+                <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg></div>
                 <h3 data-en="Creative Direction" data-ru="Креативное руководство">Creative Direction</h3>
                 <p data-en="Visual identity, creative briefs, design coordination." data-ru="Визуальная айдентика, брифы, координация дизайна.">Visual identity, creative briefs, design coordination.</p>
             </div>
             <div class="value-card">
-                <div class="value-card-icon">🎬</div>
+                <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></div>
                 <h3 data-en="Content Production" data-ru="Продакшн">Content Production</h3>
                 <p data-en="Photo/video production, shoots, agency coordination." data-ru="Фото/видео продакшн, съёмки, работа с агентствами.">Photo/video production, shoots, agency coordination.</p>
             </div>
             <div class="value-card">
-                <div class="value-card-icon">⭐</div>
+                <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
                 <h3 data-en="Reputation" data-ru="Репутация">Reputation</h3>
                 <p data-en="Review management, feedback handling, crisis communication." data-ru="Работа с отзывами, обратная связь, кризисные коммуникации.">Review management, feedback handling, crisis communication.</p>
             </div>
@@ -1379,7 +1391,7 @@
             <h2 class="section-title" data-en="Let's Work Together" data-ru="Давайте работать вместе">Let's Work Together</h2>
             <div class="contact-links">
                 <a href="tel:+971504649018" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> +971 50 464 9018</a>
-                <a href="mailto:fotolga2020@gmail.com" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> fotolga2020@gmail.com</a>
+                <a href="/cdn-cgi/l/email-protection#a8cec7dcc7c4cfc99a989a98e8cfc5c9c1c486cbc7c5" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg> <span class="__cf_email__" data-cfemail="e98f869d86858e88dbd9dbd9a98e84888085c78a8684">[email&#160;protected]</span></a>
                 <a href="https://www.linkedin.com/in/olgafot/" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg> LinkedIn</a>
                 <a href="https://t.me/ole4kafot" target="_blank" class="contact-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg> Telegram</a>
             </div>
@@ -1394,7 +1406,7 @@
         <div class="chat-container">
             <div class="chat-api-setup" id="apiSetup">
                 <div class="api-setup-content">
-                    <div class="api-icon">💬</div>
+                    <div class="api-icon"><svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="1.5" width="48" height="48"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></div>
                     <h3 data-en="Chat with AI" data-ru="Чат с AI">Chat with AI</h3>
                     <p data-en="Get an API key from Olga via Telegram to start chatting." data-ru="Получите API-ключ у Ольги в Telegram.">Get an API key from Olga via Telegram to start chatting.</p>
                     <a href="https://t.me/ole4kafot" target="_blank" class="telegram-cta-btn">
@@ -1411,7 +1423,7 @@
             <div class="chat-interface" id="chatInterface" style="display: none;">
                 <div class="chat-messages" id="chatMessages">
                     <div class="chat-message assistant">
-                        <div class="message-avatar">🤖</div>
+                        <div class="message-avatar assistant-avatar"></div>
                         <div class="message-content"><p data-en="Hi! Ask me anything about Olga's experience." data-ru="Привет! Спрашивайте об опыте Ольги.">Hi! Ask me anything about Olga's experience.</p></div>
                     </div>
                 </div>
@@ -1431,7 +1443,7 @@
 
     <footer><p>© 2025 Olga Fot. Dubai, UAE.</p></footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         let currentLang = 'en';
         function switchLanguage(lang) {
             currentLang = lang;
@@ -1460,7 +1472,7 @@
             if (!msg.trim() || !apiKey) return;
             addMessage(msg, 'user'); chatInput.value = ''; sendBtn.disabled = true;
             const typing = document.createElement('div'); typing.className = 'chat-message assistant';
-            typing.innerHTML = '<div class="message-avatar">🤖</div><div class="message-content"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
+            typing.innerHTML = '<div class="message-avatar assistant-avatar"></div><div class="message-content"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
             chatMessages.appendChild(typing); chatMessages.scrollTop = chatMessages.scrollHeight;
             try {
                 const res = await fetch('https://api.anthropic.com/v1/messages', {
@@ -1474,7 +1486,8 @@
         }
         function addMessage(text, role) {
             const div = document.createElement('div'); div.className = 'chat-message ' + role;
-            div.innerHTML = `<div class="message-avatar">${role === 'user' ? '👤' : '🤖'}</div><div class="message-content"><p>${text.replace(/\n/g, '<br>')}</p></div>`;
+            const avatarClass = role === 'user' ? 'user-avatar' : 'assistant-avatar';
+            div.innerHTML = `<div class="message-avatar ${avatarClass}"></div><div class="message-content"><p>${text.replace(/\n/g, '<br>')}</p></div>`;
             chatMessages.appendChild(div); chatMessages.scrollTop = chatMessages.scrollHeight;
         }
         sendBtn.addEventListener('click', () => sendMessage(chatInput.value));
@@ -1482,8 +1495,4 @@
         document.querySelectorAll('.suggestion-chip').forEach(chip => chip.addEventListener('click', () => sendMessage(chip.dataset.question)));
 
         document.querySelector('.mobile-menu-btn').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('active'));
-        document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('active')));
-        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' }); }));
-    </script>
-</body>
-</html>
+        document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('active
